@@ -5,22 +5,29 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev":"concurrently \"cd server && npm run server\" \"cd client && npm run dev\"",
+    "start:dev": "concurrently \"cd server && npm run server\" \"cd client && npm run dev\"",
     "start": "cd server && node server.js",
-    "server":"cd server nodemon server.js --ignore client",
-    "build":"cd client && npm run build",
-    "client":"cd client && npm start",
-    "install":"concurrently \"cd client && npm install\" \"cd server && npm install\""
+    "server": "cd server nodemon server.js --ignore client",
+    "build": "cd client && npm run build",
+    "client": "cd client && npm start",
+    "install": "concurrently \"cd client && npm install\" \"cd server && npm install\"",
+    "heroku-prebuild": "npm install --dev"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/william-chalk/contact-card.git"
   },
   "keywords": [],
+  "engines": {
+    "node": "16.17.0"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/william-chalk/contact-card/issues"
   },
-  "homepage": "https://github.com/william-chalk/contact-card#readme"
+  "homepage": "https://github.com/william-chalk/contact-card#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
 }

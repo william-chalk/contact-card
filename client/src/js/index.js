@@ -39,6 +39,14 @@ form.addEventListener("submit", (event) => {
   if (submitBtnToUpdate == false) {
     postDb(name, email, phone, profile);
   } else {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+    let profile = document.querySelector('input[type="radio"]:checked').value;
+
+    // Calls the editDB function passing in any values from the form element as well as the ID of the contact that we are updating
+    editDb(profileId, name, email, phone, profile);
+
     fetchCards();
     // Toggles the submit button back to POST functionality
     submitBtnToUpdate = false;
@@ -59,7 +67,8 @@ window.deleteCard = (e) => {
 };
 
 window.editCard = (e) => {
-  let id = parseInt(e.id);
+  profileId = parseInt(e.dataset.id);
+
   let editName = e.dataset.name;
   let editEmail = e.dataset.email;
   let editPhone = e.dataset.phone;
@@ -68,8 +77,6 @@ window.editCard = (e) => {
   document.getElementById("email").value = editEmail;
   document.getElementById("phone").value = editPhone;
   let profile = document.querySelector('input[type="radio"]:checked').value;
-
-  editDb(id, editName, editEmail, editPhone, profile);
 
   form.style.display = "block";
 

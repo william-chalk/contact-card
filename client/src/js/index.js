@@ -5,12 +5,13 @@ import { toggleForm, clearForm } from "./form";
 import "../css/index.css";
 import { Tooltip, Toast, Popover } from "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { initdb, getDb, postDb } from "./database";
+import { initdb, getDb, postDb, deleteDb } from "./database";
 import { fetchCards } from "./cards";
 
 window.addEventListener("load", function () {
   initdb();
   fetchCards();
+  getDb();
   document.getElementById("logo").src = Logo;
   document.getElementById("bearThumbnail").src = Bear;
   document.getElementById("dogThumbnail").src = Dog;
@@ -50,3 +51,9 @@ form.addEventListener("submit", (event) => {
   // Reload the DOM
   fetchCards();
 });
+
+window.deleteCard = (e) => {
+  let id = parseInt(e.id);
+  deleteDb(id);
+  fetchCards();
+};

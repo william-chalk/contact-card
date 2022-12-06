@@ -8,6 +8,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { initdb, getDb, postDb, deleteDb, editDb } from "./database";
 import { fetchCards } from "./cards";
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js");
+  });
+}
+
 window.addEventListener("load", function () {
   initdb();
   fetchCards();

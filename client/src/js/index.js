@@ -7,6 +7,7 @@ import { Tooltip, Toast, Popover } from "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { initdb, getDb, postDb, deleteDb, editDb } from "./database";
 import { fetchCards } from "./cards";
+const installBtn = document.getElementById("installBtn");
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -88,3 +89,17 @@ window.editCard = (e) => {
 
   submitBtnToUpdate = true;
 };
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  installBtn.style.visibility = "visible";
+  installBtn.addEventListener("click", () => {
+    event.prompt();
+    installBtn.setAttribute("disabled", true);
+    installBtn.textContent = "Installed!";
+  });
+});
+
+window.addEventListener("appinstalled", (event) => {
+  console.log("appinstalled", event);
+});
